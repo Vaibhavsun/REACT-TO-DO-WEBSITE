@@ -1,14 +1,19 @@
 import express from "express";
 import sqlite3 from "sqlite3";
 import cors from "cors";
-
+import { fileURLToPath } from 'url';
+import path from "path";
 const exp = express();
 const db = sqlite3();
 const cors = cors()
 const app = exp();
 const database = new db.Database('tasks.db');
 
-app.use(exp.static('./frontend/dist'));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(exp.static(path.join(__dirname, "frontend", "dist")));
 app.use(cors());
 app.use(exp.json());
 
