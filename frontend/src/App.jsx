@@ -7,6 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
+const URL = ""
+
 function App() {
 
   const [date, setDate] = useState(new Date());
@@ -30,7 +32,7 @@ function App() {
 
 
   async function handleCompleteTask(id) {
-    const req = await fetch("http://localhost:3000/tasks/"+id, {
+    const req = await fetch(`${URL}/tasks/`+id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -92,7 +94,7 @@ function App() {
       if (isDel){
         return;
       }
-    const req = await fetch("http://localhost:3000/tasks/"+id, {
+    const req = await fetch(`${URL}/tasks/`+id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
@@ -124,7 +126,7 @@ function App() {
   useEffect(() => {
 
       async function readTask(){
-        const req = await fetch("http://localhost:3000/tasks", {
+        const req = await fetch(`${URL}/tasks`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -154,7 +156,7 @@ function App() {
       date:date.toISOString().split('T')[0],
       isCompleted:0
     }
-    const req = await fetch("http://localhost:3000/tasks", {
+    const req = await fetch(`${URL}/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
