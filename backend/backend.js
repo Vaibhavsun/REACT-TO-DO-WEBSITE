@@ -1,9 +1,14 @@
-const exp = require('express');
-const db = require('sqlite3');
-const cors = require('cors')
+import express from "express";
+import sqlite3 from "sqlite3";
+import cors from "cors";
+
+const exp = express();
+const db = sqlite3();
+const cors = cors()
 const app = exp();
 const database = new db.Database('tasks.db');
 
+app.use(exp.static('./frontend/dist'));
 app.use(cors());
 app.use(exp.json());
 
